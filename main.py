@@ -18,7 +18,13 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List
 
-import pandas as pd
+try:
+    import pandas as pd
+except ModuleNotFoundError as exc:  # pragma: no cover - runtime guard
+    raise SystemExit(
+        "pandas is required. Install with `pip install pandas==1.5.3`"
+    ) from exc
+
 import requests
 
 
